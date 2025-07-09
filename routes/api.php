@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,3 +19,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
 // Post API Routes
 Route::apiResource('posts', PostController::class);
+
+//Task API Routes
+Route::apiResource('tasks', TaskController::class)->only(['store', 'update', 'show', 'destroy']);
+Route::get('/pending-list', [TaskController::class, 'pendingList']);
